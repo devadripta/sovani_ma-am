@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message to Sovani Ma'am</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensure body fills the viewport */
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            font-size: 20px;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #003366;
+            border-radius: 10px;
+            background-color: #fff;
+            display: none;
+            animation: fadeIn 2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px; /* Limit content width */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #00509e;
+        }
+
+        .highlight {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the form elements */
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%; /* Input takes full width */
+        }
+
+        .accept-box {
+            margin-top: 30px;
+            border: 2px solid #003366;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px; /* Limit content width */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the buttons */
+        }
+
+        .accept-box button {
+            background-color: #28a745;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .accept-box button:hover {
+            background-color: #218838;
+        }
+
+        #internshipList {
+            list-style: disc;
+            padding-left: 30px;
+        }
+
+        #internshipList li {
+            margin-bottom: 5px;
+        }
+
+        #projectDetails {
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            display: none;
+        }
+
+        .js-message {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #003366;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 100;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dear Sovani Ma'am,</h1>
+
+    <p>Before calling my parents, let me show you why my attendance has been low!</p>
+    <button onclick="revealMessage()">See my reason!</button>
+
+    <div id="message" class="content">
+        <p>I have been juggling several commitments, and here's a glimpse:</p>
+        <ul id="internshipList"></ul>
+
+        <p>
+            - <span class="highlight">IISER Kolkata Research Internship:</span> I spent a month working on Large Language Models (LLM) tasks such as stance detection using a controversial dataset focused on mental health. (1 month on-campus, rest remotely)
+            - <span class="highlight">DIAT, DRDO Internship:</span> I worked on Biomedical signals (EEG, EMG) and have even submitted a research paper, which is currently under review. 
+            - <span class="highlight">Conferences and Workshops:</span> I actively participated in conferences like IIIT Hyderabad, TIFR Mumbai  which helped me network and gain valuable insights.
+            - Our BE project, sponsored by a research company, is in the healthcare domain. We are guided by Cipla and hospitals in Pune.  (I am required to stay present on Thursday-Friday-Saturday) 
+        </p>
+
+        <p>In between all of this, I was unfortunately diagnosed with a slip disc, which led to a period of bed rest. I am still recovering, but I'm working hard to get back on track and attend classes regularly.</p>
+        <p>These experiences are critical to my learning and growth, and I hope you understand why my attendance may have suffered. I assure you that my dedication to learning and success is unwavering!</p>
+
+        <button id="cvButton">Please check my CV to know more</button>
+
+        <form id="attendanceForm">
+            Reason for Low Attendance:
+            <input type="text" id="reason" name="reason" value="Internships, Conferences, and Medical Issues">
+            </form>
+    </div>
+
+    <div id="acceptBox" class="accept-box">
+        <p>Do you accept this reason?</p>
+        <button type="button" onclick="acceptReason()">Accept</button>
+        <button type="button" onclick="rejectReason()">Reject</button>
+    </div>
+
+    <div class="js-message">This website was created using JavaScript concepts.</div>
+
+    <script>
+        // Initial greeting
+        let greeting = "Hello, Sovani Ma'am!";
+        alert(greeting);
+
+        // Reveal the message section
+        function revealMessage() {
+            document.getElementById("message").style.display = "block";
+            displayInternships();
+        }
+
+        // Display internships (Unit III: Functions and Objects)
+        function displayInternships() {
+            let internships = ["IISER Kolkata Research Internship (1 month on-campus, rest remotely)", "DIAT DRDO Internship", "Conferences and Workshops"];
+            let list = document.getElementById("internshipList");
+            internships.forEach((internship) => {
+                let listItem = document.createElement("li");
+                listItem.textContent = internship;
+                list.appendChild(listItem);
+            });
+        }
+
+        // Open the CV PDF in a new tab
+        document.getElementById("cvButton").addEventListener("click", function() {
+            window.open("https://drive.google.com/file/d/1zFXbP3ZBW2ufw5MivqojfCidEGKVUBCj/view?usp=sharing", "_blank");
+        });
+
+        // Accept or reject reason
+        function acceptReason() {
+            alert("Thank you for accepting my reason, Ma'am!");
+        }
+
+        function rejectReason() {
+            alert("I understand, Ma'am. I will improve my attendance.");
+        }
+
+        // Show JavaScript message after a delay (for demonstration)
+        setTimeout(function() {
+            document.querySelector(".js-message").style.display = "block";
+        }, 5000); // Show after 5 seconds
+    </script>
+
+</body>
+</html>
